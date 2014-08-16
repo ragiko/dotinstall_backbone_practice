@@ -1,0 +1,22 @@
+{
+  "name": "backbone_test",
+  "version": "0.0.0",
+  "authors": [
+    "Taguchi Hiroaki <ragiko.complexe@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "json2": "*",
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    "backbone": "~1.0.0",
+    "backbone.localStorage": "https://github.com/jeromegn/Backbone.localStorage.git"
+  }
+}
