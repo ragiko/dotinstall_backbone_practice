@@ -15,7 +15,7 @@ $(function(){
 		tagName: 'li',
 		// className: 'liClass',
 		// id: 'liId',
-		template: _.template('<%- title %>'),
+		template: _.template( $("#task-template").html() ),
 		render: function () {
 			var template = this.template(this.model.toJSON());
 			this.$el.html(template);
@@ -26,6 +26,7 @@ $(function(){
 
 	var taskView = new TaskView({ model: task });
 	console.log(taskView.render().el);
+	$('body').append(taskView.render().el);
 
 });
 
