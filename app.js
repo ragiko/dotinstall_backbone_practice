@@ -11,17 +11,19 @@ $(function(){
 	var task = new Task();
 
 	var TaskView = Backbone.View.extend({
-		// DOMを作る
 		tagName: 'li',
-		// className: 'liClass',
-		// id: 'liId',
+		events: {
+			'click .command': 'sayHello'
+		},
+		sayHello: function () {
+			alert('hello');
+		},
 		template: _.template( $("#task-template").html() ),
 		render: function () {
 			var template = this.template(this.model.toJSON());
 			this.$el.html(template);
 			return this;
 		}
-
 	});
 
 	var taskView = new TaskView({ model: task });
@@ -29,5 +31,3 @@ $(function(){
 	$('body').append(taskView.render().el);
 
 });
-
-// $el は jQueryのオブジェクト
