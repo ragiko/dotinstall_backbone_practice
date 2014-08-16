@@ -42,6 +42,14 @@ $(function(){
 
 	var TasksView = Backbone.View.extend({
 		tagName: 'ul',
+		initialize: function () {
+			this.collection.on('add', this.addNew, this);
+		},
+		addNew: function (task) {
+			console.log(task.toJSON());
+			var taskView = new TaskView({model: task});
+			this.$el.append(taskView.render().el);
+		},
 		render: function () {
 			this.collection.each( function (task) {
 				var taskView = new TaskView({model: task});
@@ -61,7 +69,7 @@ $(function(){
 		submit: function (e) {
 			// 画面遷移をさせない
 			e.preventDefault();
-			var task = new Task({title: $('#title').val});
+			var task = new Task({title: $('#title').val()});
 			this.collection.add(task);
 		}
 	});
@@ -80,5 +88,6 @@ $(function(){
 	]);
 
 	var tasksView = new TasksView({collection: tasks});
+	var addTaskView = new AddTaskView({collection: tasks});
 	$('#tasks').html(tasksView.render().el);
 });
