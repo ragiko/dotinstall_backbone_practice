@@ -15,9 +15,14 @@ $(function(){
 		tagName: 'li',
 		initialize: function () {
 			this.model.on('destroy', this.remove, this);
+			this.model.on('change', this.render, this);
 		},
 		events: {
 			'click .delete': 'destroy',
+			'click .toggle': 'toggle',
+		},
+		toggle: function () {
+			this.model.set('completed', !this.model.get('completed'));
 		},
 		destroy: function () {
 			if (confirm('are you sure?')) {
