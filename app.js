@@ -4,7 +4,17 @@ $(function(){
 		defaults: {
 			title: 'do something',
 			completed: false,
-		}
+		},
+		validate: function (attrs) {
+			if ( _.isEmpty(attrs.title) ) {
+				return 'title must not be empty';
+			}
+		},
+		initialize: function () {
+			this.on('invalid', function (model, error) {
+				$('#error').html(error);
+			});
+		},
 	});
 
 	var Tasks = Backbone.Collection.extend({
@@ -69,8 +79,11 @@ $(function(){
 		submit: function (e) {
 			// 画面遷移をさせない
 			e.preventDefault();
-			var task = new Task({title: $('#title').val()});
-			this.collection.add(task);
+			// var task = new Task({title: $('#title').val()});
+			var task = new Task();
+			if (task.set({title: $('#title').val()}, {'validate', true}) {
+				this.collection.add(task);
+			}
 		}
 	});
 
