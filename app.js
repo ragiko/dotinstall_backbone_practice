@@ -60,12 +60,19 @@ $(function(){
 			var taskView = new TaskView({model: task});
 			this.$el.append(taskView.render().el);
 		},
+		updateCount: function () {
+			var uncompletedTasks = this.collection.filter(function (task) {
+				return !task.get('completed');
+			});
+			$('#count').html(uncompletedTasks.length);
+		},
 		render: function () {
 			this.collection.each( function (task) {
 				var taskView = new TaskView({model: task});
 				this.$el.append(taskView.render().el);
 			}, this);
 
+			this.updateCount();
 			return this;
 		}
 
@@ -81,7 +88,7 @@ $(function(){
 			e.preventDefault();
 			// var task = new Task({title: $('#title').val()});
 			var task = new Task();
-			if (task.set({title: $('#title').val()}, {'validate', true}) {
+			if (task.set({title: $('#title').val()}, {'validate': true})) {
 				this.collection.add(task);
 			}
 		}
