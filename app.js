@@ -53,6 +53,19 @@ $(function(){
 
 	});
 
+	var AddTaskView = Backbone.View.extend({
+		el: '#addTask',
+		events: {
+			'submit': 'submit',
+		},
+		submit: function (e) {
+			// 画面遷移をさせない
+			e.preventDefault();
+			var task = new Task({title: $('#title').val});
+			this.collection.add(task);
+		}
+	});
+
 	var tasks = new Tasks([
 		{
 			title: 'task1',
