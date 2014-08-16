@@ -5,28 +5,17 @@ $(function(){
 		defaults: {
 			title: 'do it',
 			complited: false,
-		},
-		validate: function (attrs) {
-			if ( _.isEmpty(attrs.title) ) {
-				return 'title must not be empty!';
-			}
-		},
-		toggle: function () {
-			this.set('complited', !this.get('completed'));
 		}
-
 	});
 
-	var task1 = new Task();
-	// task1.set('title', 'newTitle');
-	// var title = task1.get('title');
+	var task = new Task();
 
-	//console.log(title);
-	// console.log(task1.toJSON());
+	var TaskView = Backbone.View.extend({
+		tagName: 'li',
+	});
 
-	console.log(task1.toJSON());
-	task1.set({'title': ''}, {validate: true});
-	// task1.toggle();
-	console.log(task1.toJSON());
+	var taskView = new TaskView({ model: task });
+	// $el は jQueryのオブジェクト
+	console.log(taskView.$el);
 
 });
