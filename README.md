@@ -1,7 +1,5 @@
- ### コマンド 
-```
-npm install
-grunt bower:install
-```
+ # backbone.jsの練習
 
-so, you write backbone program freedom!
+ backbone.jsのドットインストールの練習
+
+
