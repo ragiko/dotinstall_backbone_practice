@@ -12,13 +12,14 @@ $(function(){
 		},
 		initialize: function () {
 			this.on('invalid', function (model, error) {
+				// modelがDOM操作してるきもい
 				$('#error').html(error);
 			});
 		},
 	});
 
 	var Tasks = Backbone.Collection.extend({
-	 model: Task 
+		model: Task 
 	});
 
 	var TaskView = Backbone.View.extend({
@@ -61,6 +62,7 @@ $(function(){
 			var taskView = new TaskView({model: task});
 			this.$el.append(taskView.render().el);
 			$('#title').val('').focus();
+			// updateCountがネストしてるきもい
 			this.updateCount();
 		},
 		updateCount: function () {
